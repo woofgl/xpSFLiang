@@ -1,12 +1,14 @@
 package com.snow.xpSFLiang;
 
 
+import com.britesnow.snow.web.auth.AuthRequest;
 import com.britesnow.snow.web.binding.EntityClasses;
 import com.google.inject.*;
 import com.snow.xpSFLiang.dao.DaoRegistry;
 import com.snow.xpSFLiang.dao.IDao;
 import com.snow.xpSFLiang.entity.BaseEntity;
 import com.snow.xpSFLiang.util.PackageScannerUtil;
+import com.snow.xpSFLiang.web.AppAuthRequest;
 
 import javax.inject.Inject;
 import java.lang.reflect.ParameterizedType;
@@ -20,7 +22,7 @@ public class AppConfig extends AbstractModule {
     @Override
     protected void configure() {
         
-//        bind(AuthRequest.class).to(AppAuthRequest.class);
+        bind(AuthRequest.class).to(AppAuthRequest.class);
         // bind the dao
         for (Class entityClass : entityClasses){
             bindDao(entityClass);

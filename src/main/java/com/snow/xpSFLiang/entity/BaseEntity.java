@@ -1,26 +1,24 @@
 package com.snow.xpSFLiang.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @MappedSuperclass
+@Data
 public class BaseEntity {
-    
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_STORE")
     private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
+    @Column(name = "createdby_id")
+    private Long createdBy_id;
+    @Column(name = "created_date")
+    private Date createdDate;
+    @Column(name = "updatedby_id")
+    private Long updatedBy_id;
+    @Column(name = "updated_date")
+    private Date updatedDate;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    
-    
 }

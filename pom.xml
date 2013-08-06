@@ -166,9 +166,19 @@
           <version>1.3.0</version>
       </dependency>
       <!-- /for the DAO Registry -->
+      <!--simple code write-->
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>0.12.0</version>
+      </dependency>
+      <dependency>
+          <groupId>postgresql</groupId>
+          <artifactId>postgresql</artifactId>
+          <version>9.1-901.jdbc4</version>
+      </dependency>
 
 
-    
   </dependencies>
   
   <repositories>

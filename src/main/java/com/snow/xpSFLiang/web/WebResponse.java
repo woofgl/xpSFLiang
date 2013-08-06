@@ -1,6 +1,6 @@
 package com.snow.xpSFLiang.web;
 
-import com.snow.xpSFLiang.AppException;
+import com.snow.xpSFLiang.exception.AppException;
 import com.google.common.base.Strings;
 
 public class WebResponse {

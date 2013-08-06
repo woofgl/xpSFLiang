@@ -1,3 +1,2 @@
-<div>
-    SaleForce Oauth Ok.
-</div>
+[@includeTemplate name="/callback_macro.ftl"/]
+[@callbackTemplate service='SalesForce' /]

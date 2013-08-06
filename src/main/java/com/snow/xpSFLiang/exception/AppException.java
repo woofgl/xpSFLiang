@@ -1,4 +1,4 @@
-package com.snow.xpSFLiang;
+package com.snow.xpSFLiang.exception;
 
 @SuppressWarnings("serial")
 public class AppException extends RuntimeException {
