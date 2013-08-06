@@ -67,7 +67,6 @@ public class AppAuthRequest implements AuthRequest {
 
     @WebModelHandler(startsWith = "/")
     public void home(@WebModel Map m, @WebUser User user, RequestContext rc) {
-        // gameTestManager.init();
         m.put("user", user);
     }
 

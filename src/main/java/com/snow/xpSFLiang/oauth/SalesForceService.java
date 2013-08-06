@@ -2,8 +2,14 @@ package com.snow.xpSFLiang.oauth;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.google.inject.Inject;
+import com.snow.xpSFLiang.dao.DaoRegistry;
+import com.snow.xpSFLiang.dao.IDao;
+import com.snow.xpSFLiang.entity.LabelRel;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONException;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Verb;
@@ -14,7 +20,10 @@ import com.google.inject.Singleton;
 @Singleton
 public class SalesForceService {
     private  static final String SF_URL = "https://na15.salesforce.com/services/data/v28.0";
+    private  static final String BASE_URL = "https://na15.salesforce.com";
     private  static final String SF_QUERY_URL = SF_URL+"/query";
+    @Inject
+    private DaoRegistry daoRegistry;
     
     
     /**
@@ -32,6 +41,16 @@ public class SalesForceService {
         oauth.addQuerystringParameter("q", sql);
         Map opts = JsonUtil.toMapAndList(oauth.send().getBody());
         resultMap.put("result", opts.get("records"));
+        List list = (JSONArray) opts.get("records");
+        IDao<LabelRel> lableDao = daoRegistry.getDao(LabelRel.class);
+        for (Object o : list) {
+            Map map = (Map) o;
+            Map attrs = (Map)map.get("attributes");
+            String url = (String)attrs.get("url");
+            List<LabelRel> rels = lableDao.search("from LabelRel rel where rel.contactId = ?", url);
+            map.put("labels", rels);
+        }
+
         resultMap.put("result_count", 20);
         return resultMap;
     }

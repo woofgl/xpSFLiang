@@ -1,19 +1,29 @@
 <script id="tmpl-SalesForceContacts" type="text/html">
+    <h3>Contacts</h3>
     <div class="SalesForceContacts">
-    	<table>
-    	<tr>
-    		<th>SF Contacts</th>
-    		<th>Label</th>
-    		<th></th>
-    	</tr>
-    		 {{#each contacts.result}}
-    		 <tr>
-			     
-			     <td class="tcell">{{Name}}</td>
-			     <td class="tcell">(None)</td>
-			     <td class="tcell"><button class="btn btn-primary">Add Label</button></td>
-     		</tr>
-     		 {{/each}}
-	    </table>
+        <table class="table table-striped">
+            <tr>
+                <th>Contact</th>
+                <th>Tile</th>
+                <th>Label</th>
+                <th></th>
+            </tr>
+            {{#each contacts.result}}
+                <tr data-url="{{attributes.url}}">
+                    <td >{{Name}}</td>
+                    <td >{{Title}}</td>
+                    <td >
+                        {{#if labels}}
+                            {{#each labels}}
+                                {{label.label}} &nbsp;
+                            {{/each}}
+                        {{/if}}
+                    </td>
+                    <td class="addLabel">
+                       <input type="text" value="" placeholder="new lable"/> <button class="btn btn-primary">Add</button>
+                    </td>
+                </tr>
+            {{/each}}
+        </table>
     </div>
 </script>

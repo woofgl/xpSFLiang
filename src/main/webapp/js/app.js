@@ -48,7 +48,6 @@ var app = app || {};
 				}
 				return;
 			} else {
-				console.log(data)
 				dfd.resolve(data);
 			}
 
